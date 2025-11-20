@@ -1,18 +1,27 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { PokemonListItem as IPokemonListItem } from '../interfaces';
+import { useNavigation } from '@react-navigation/native';
 
 type Props = {
   pokemon: IPokemonListItem;
 };
 
 export function PokemonListItem({ pokemon }: Props) {
+  const navigation = useNavigation();
+
+  const handleOnTouch = () => {
+    navigation.navigate('PokemonDetail' as never);
+  };
+
   return (
-    <View style={styles.wrapper}>
-      <Image source={{ uri: pokemon.image }} style={styles.image} />
-      <Text style={styles.text}>{pokemon.name}</Text>
-      <View style={styles.bar} />
-    </View>
+    <TouchableOpacity onPress={handleOnTouch}>
+      <View style={styles.wrapper}>
+        <Image source={{ uri: pokemon.image }} style={styles.image} />
+        <Text style={styles.text}>{pokemon.name}</Text>
+        <View style={styles.bar} />
+      </View>
+    </TouchableOpacity>
   );
 }
 

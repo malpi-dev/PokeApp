@@ -3,6 +3,7 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { PokemonListItem as IPokemonListItem } from '../interfaces';
 import { fetchPokemons } from '../services';
 import { PokemonListItem } from '.';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export function PokemonList() {
   useEffect(() => {
@@ -24,7 +25,8 @@ export function PokemonList() {
   };
 
   return (
-    <View style={styles.wrapper}>
+
+     <View style={styles.wrapper}>
       <FlatList
         data={pokemons}
         keyExtractor={item => item.id.toString()}
@@ -35,13 +37,14 @@ export function PokemonList() {
         renderItem={({ item }) => <PokemonListItem pokemon={item} />}
       />
     </View>
+
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
-    padding: 10,
+    // padding: 10,
     backgroundColor: '#fff',
   },
   row: {
